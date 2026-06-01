@@ -20,12 +20,14 @@ function App() {
             <Navbar />
             {/* AnimatePresence permite animações na saída de componentes */}
             <AnimatePresence mode="wait">
+           
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/favoritos" element={<Favorites />} />
                 {/* <Route path="/estante" element={<Library />} /> */}
                 {/* <Route path="/livro/:id" element={<BookDetails />} /> */}
               </Routes>
+  
             </AnimatePresence>
           </Router>
         </FavoritesProvider>

@@ -1,146 +1,284 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Felipa&family=Cinzel+Decorative:wght@400;700&display=swap');
+
+
 :root {
-    color-scheme: light dark;
-    --vermelho_escuro: #240200;
-    --nude: #A56E3F;
-    --quasebranco: #F3D0AA;
-    --maronzinho: #572401;
-    --text: #333;
-    --text-h: #111;
-    --shadow:
-      rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --vermelho_escuro: #240200;
+  --nude: #8b5c32;
+  --quasebranco: #F3D0AA;
+  --maronzinho: #6A4123;
+  --dourado: #c9a84c;
+  --sepia-claro: #f5e6ca;
 
-
-
-    --shadow-book: 4px 4px 12px rgba(0,0,0,0.4), -1px -1px 4px rgba(201,168,76,0.1);
-  --shadow-glow: 0 0 20px rgba(201,168,76,0.3);
-
-  @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(28px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-decorativa: 'Felipa', cursive;
+  --font-titulo: 'Cinzel Decorative', serif;
+  --sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
+
+  --shadow-book: 4px 4px 12px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 20px rgba(201,168,76,0.3);
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  color: #333;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
+
 body {
   margin: 0;
-    min-height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: radial-gradient(circle at 15% 10%, rgba(175, 124, 144, 0.16), transparent 18%),
-    radial-gradient(circle at 85% 8%, rgba(108, 186, 255, 0.14), transparent 18%),
-    linear-gradient(180deg, #080615 0%, #100a28 100%);
-    color: var(--text);
+  min-height: 100vh;
+  font-family: var(--sans);
+  position: relative;
 }
 
-@media (max-width: 1024px) {
-  :root {
-    font-size: 16px;
-  }
+/* 
+  PSEUDO-ELEMENTO ::before:
+  É uma camada "fantasma" que o CSS cria antes do conteúdo.
+  Usamos pra aplicar o blur NO FUNDO sem borrar o texto.
+  position: fixed = fica fixo mesmo com scroll
+  inset: 0 = ocupa top/right/bottom/left = 0 (tela toda)
+  z-index: -1 = fica atrás de tudo
+  scale: 1.05 = compensa as bordas borradas pelo blur
+*/
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('src/assets/pergaminho.jpg') center / cover no-repeat;
+  filter: blur(2px);
+  z-index: -1;
+  scale: 1.05;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
 #root {
   width: 1126px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+.fundo {
+  background: url('src/assets/livro02.jpeg') center / cover no-repeat;
+  width: 100%;
+  min-height: 220px;
+  position: relative; /* sem isso nada de overlay}*/
+  border-radius: 0 0 12px 12px;
 }
 
+.fundo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 12px 12px;
+}
+
+/* =============================================
+   TÍTULO PRINCIPAL
+   ============================================= */
+.titulo-header {
+  text-align: center;
+}
+
+.titulo-header h1 {
+  font-family: var(--font-titulo);
+  font-size: 3rem;
+  font-weight: 700;
+  color: #f5e0bb;
+  margin: 12px 0 6px;
+  letter-spacing: 0.08em;
+  text-shadow: 
+    2px 2px 8px rgba(0,0,0,0.7),
+    0 0 30px rgba(201, 168, 76, 0.4);
+}
+
+/* 
+  As linhas douradas ao lado do título
+  width pequeno + background dourado = divisória elegante 
+*/
+.titulo-linha {
+  width: 80px;
+  height: 1px;
+  background: var(--dourado);
+  margin: 0 auto;
+  opacity: 0.7;
+}
+
+.titulo-sub {
+  font-size: 0.72rem;
+  color: #e8ccaa;
+  letter-spacing: 0.35em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* =============================================
+   TEXTO DE INSTRUÇÃO
+   ============================================= */
+.instrucao {
+  color: var(--maronzinho);
+  font-size: 1rem;
+  text-align: center;
+  margin: 32px auto 0;
+  max-width: 500px;
+  opacity: 0.9;
+}
+
+
+.busca-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 24px auto 40px;
+  width: 100%;
+  max-width: 620px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.busca-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid var(--dourado);
+  border-radius: 8px;
+  background: rgba(245, 230, 202, 0.85);
+  color: var(--vermelho_escuro);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+
+.busca-form input:focus {
+  border-color: var(--nude);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.25);
+}
+
+
+.botao-conjurar,
+.busca-form button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--maronzinho);
+  color: var(--sepia-claro);
+  border: none;
+  border-radius: 30px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.botao-conjurar:hover,
+.busca-form button:hover {
+  background: var(--vermelho_escuro);
+  transform: scale(1.03);
+}
+
+/* =============================================
+   GRADE DE RESULTADOS
+   ============================================= */
+.resultados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 0 20px 40px;
+}
+
+.msg-resultados {
+  color: var(--maronzinho);
+  text-align: center;
+  width: 100%;
+  grid-column: 1 / -1; /* ocupa todas as colunas do grid */
+  opacity: 0.8;
+}
+
+/* =============================================
+   TIPOGRAFIA GERAL
+   ============================================= */
 h1 {
-  font-family: var(--font-title);
-  color: var(--quasebranco);
+  font-family: var(--font-decorativa);
+  color: var(--maronzinho);
   letter-spacing: 0.05em;
+  font-size: 2.2rem;
+  padding: 20px;
 }
 
 h2, h3 {
-  font-family: var(--heading);
+  font-family: var(--sans);
   color: var(--vermelho_escuro);
   letter-spacing: 0.05em;
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
 }
 
 h2 {
   font-size: 24px;
   line-height: 118%;
-  letter-spacing: -0.24px;
   margin: 0 0 8px;
 }
 
-@media (max-width: 1024px) {
-  h1 {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-}
 p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* =============================================
+   ANIMAÇÃO DO TÍTULO (surgimento mágico)
+   ============================================= */
+@keyframes surgimentoMagico {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+.titulo-header {
+  animation: surgimentoMagico 1.2s ease-out forwards;
+}
+
+/* =============================================
+   RESPONSIVIDADE
+   Adapta o layout pra telas menores
+   ============================================= */
+@media (max-width: 1024px) {
+  :root { font-size: 16px; }
+  h1 { font-size: 36px; margin: 20px 0; }
+  h2 { font-size: 20px; }
+  .titulo-header h1 { font-size: 2rem; }
+}
+
+@media (max-width: 600px) {
+  .titulo-header h1 { font-size: 1.4rem; }
+  .busca-form { flex-direction: column; }
+  .busca-form button { width: 100%; justify-content: center; }
+}
+
+/* =============================================
+   CÓDIGO / MONO
+   ============================================= */
 code {
+  font-family: var(--mono);
   font-size: 15px;
   line-height: 135%;
   padding: 4px 8px;
-  background: var(--code-bg);
+  border-radius: 4px;
 }
