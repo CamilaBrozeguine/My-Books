@@ -4,6 +4,7 @@ import { Button } from '../components/Button'
 import { useState, Suspense } from 'react'
 import { BookCard } from '../components/bookCard'
 import { Input } from '../components/Input'
+import Carta from '../components/carta'
 
 const Home = () => {
   const [query, setQuery] = useState('')
@@ -34,6 +35,9 @@ const Home = () => {
               <h1>My Book Word</h1>
               <div className='titulo-linha'></div>
               <p className='titulo-sub'>uma biblioteca pessoal</p>
+            </div>
+            <div style={{position: 'absolute' , bottom: '20px', right: '30px'}}>
+              <Carta />
             </div>
           </div>
 
