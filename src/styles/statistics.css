@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cinzel+Decorative:wght@400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.stats-page {
+  background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(210,140,160,0.2) 28px, rgba(210,140,160,0.2) 29px),
+              repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(210,140,160,0.2) 28px, rgba(210,140,160,0.2) 29px);
+  background-color: #F5EDAC;
+  min-height: 100vh;
+  padding: 2rem 1.5rem 4rem;
+  font-family: 'Caveat', cursive;
+}
+
+.stats-header { text-align: center; margin-bottom: 2.5rem; }
+.stats-titulo { font-family:'Great Vibes' , cursive; font-size: 2rem; color: #5a3e28; letter-spacing: .08em; }
+.stats-sub { font-size: 1rem; color: #8a7060; margin-top: 8px; }
+.stats-divider { color: #b5956a; font-size: .75rem; letter-spacing: .3em; margin-top: 6px; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 28px;
+}
+
+.stats-card {
+  background: #fdfaf2;
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 2px 3px 0 #FFA492, 4px 6px 0 #BA7B74;
+  padding: 1.25rem;
+  margin-top: 12px;
+}
+
+.stats-card::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: .85;
+}
+
+.card-1::before { background: repeating-linear-gradient(90deg, #a8c090 0, #a8c090 8px, #c8dab4 8px, #c8dab4 16px); }
+.card-2::before { background: repeating-linear-gradient(90deg, #e8b4b8 0, #e8b4b8 8px, #f0cdd0 8px, #f0cdd0 16px); }
+.card-3::before { background: repeating-linear-gradient(90deg, #b4c8e8 0, #b4c8e8 8px, #d0ddf0 8px, #d0ddf0 16px); }
+.card-4::before { background: repeating-linear-gradient(90deg, #e8d4a0 0, #e8d4a0 8px, #f0e4c0 8px, #f0e4c0 16px); }
+
+.stats-card-wide { grid-column: 1 / -1; }
+
+.stats-lbl { font-size: .65rem; color: #8a7060; letter-spacing: .2em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+
+.stats-big-num { font-family: 'Cinzel Decorative', serif; font-size: 3rem; color: #5a3e28; line-height: 1; }
+.stats-big-sub { font-size: .85rem; color: #8a7060; font-style: italic; margin-top: 4px; }
+
+.stats-highlight-mes { font-family: 'Great Vibes' , cursive; font-size: 1.4rem; color: #5a3e28; margin: 4px 0 2px; }
+.stats-highlight-sub { font-size: .82rem; color: #8a7060; font-style: italic; }
+.stats-badge { display: inline-block; background: #a8c090; color: #1e3a10; font-size: .68rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-top: 8px; letter-spacing: .1em; }
+
+.stats-autores { display: flex; flex-direction: column; gap: 8px; }
+.stats-autor-item { display: flex; align-items: center; gap: 8px; }
+.stats-autor-rank { font-family: 'Great Vibes' , cursive; font-size: .7rem; color: #c9b49a; min-width: 20px; }
+.stats-autor-name { font-size: .85rem; color: #4a3520; font-weight: 600; flex: 1; }
+.stats-autor-livros { font-size: .72rem; color: #8a7060; font-style: italic; }
+
+.stats-generos { display: flex; flex-direction: column; gap: 10px; }
+.stats-genero-item { display: flex; align-items: center; gap: 8px; }
+.stats-genero-name { font-size: .78rem; color: #5a3e28; font-weight: 600; min-width: 65px; }
+.stats-genero-bar-bg { flex: 1; height: 10px; background: #f0e8d8; border-radius: 20px; overflow: hidden; }
+.stats-genero-bar { height: 100%; border-radius: 20px; transition: width .5s ease; }
+.stats-genero-pct { font-size: .72rem; color: #8a7060; min-width: 32px; text-align: right; }
+
+.stats-months { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-top: 8px; }
+.stats-month-col { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.stats-month-bar-wrap { height: 60px; display: flex; align-items: flex-end; }
+.stats-month-bar { width: 16px; border-radius: 3px 3px 0 0; transition: height .3s ease; }
+.stats-month-num { font-size: .65rem; color: #5a3e28; font-weight: 600; }
+.stats-month-lbl { font-size: .55rem; color: #8a7060; text-align: center; }
